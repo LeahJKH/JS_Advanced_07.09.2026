@@ -21,6 +21,8 @@ formOne.addEventListener("submit", (e) => {
     console.log(userData)
     
     console.log(data.username)
+
+    window.location.href = "/pages/dashboard.html"
 })
 
 
