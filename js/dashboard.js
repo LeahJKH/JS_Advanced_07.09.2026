@@ -1,4 +1,4 @@
-let userData = JSON.parse(localStorage.getItem("user")) // get info back into object save variable
+let userData = JSON.parse(sessionStorage.getItem("loggedInUser")) // get info back into object save variable
 
 const welcomeHeading = document.querySelector("#welcomeMsg")
 
