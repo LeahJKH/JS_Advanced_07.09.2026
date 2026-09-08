@@ -2,28 +2,18 @@ const formOne = document.querySelector("#form");
 
 let userArray = [];
 
-
-
 if(localStorage.getItem("user")) {
     console.log(true)
     let preUsers = JSON.parse(localStorage.getItem("user"))
     preUsers.forEach(e => {
         userArray.push(e)
     });
-
-    // window.location.href = "/pages/dashboard.html" auto logger in
 } else {
     console.log(false)
-
 }
-
-// localStorage.clear() // tømmer all localstorage
-
-// localStorage.removeItem("user") // fjerner kun "user"
 
 function checkLogin(username1, password1 ) {
     let allUser = JSON.parse(localStorage.getItem("user"))
-    console.log(username1, password1)
 
     allUser.forEach((e) => {
         if (e.username === username1 && e.password === password1) {
@@ -41,32 +31,30 @@ function checkLogin(username1, password1 ) {
 }
 
 formOne.addEventListener("submit", (e) => {
-    e.preventDefault(); // fjerner default funksjoner
+    e.preventDefault(); 
 
-    const formData = new FormData(formOne) // lagere form data til js
+    const formData = new FormData(formOne) 
+    const data = Object.fromEntries(formData.entries()) 
 
-    const data = Object.fromEntries(formData.entries()) // gjør hver input til et object
-
-    // data
-    // username: "input value"
-    // password: "input value"
-
-    // JSON. Javascript object notation
-    // json alltid array eller object
-
-    // userArray.push(data)
-
-    // localStorage.setItem("user", JSON.stringify(userArray)) // lagre object til local storage
-
-    let userData = JSON.parse(localStorage.getItem("user")) // get info back into object save variable
-
-    checkLogin(data.username, data.password) // sends info from form
-    // console.log(userData)
-    
-    // console.log(data.username)
-
-    // window.location.href = "/pages/dashboard.html"
+    checkLogin(data.username, data.password) 
 })
 
+//
+
+const signup = document.querySelector("#signup")
+const userfield = document.querySelector("#usernamefield")
+const passfield = document.querySelector("#passwordfield")
 
 
+signup.addEventListener("click", (e) => {
+let userNamevalue = userfield.value;
+let userPassvalue = passfield.value
+
+let fullUser = {
+    username: userNamevalue,
+    password: userPassvalue
+}
+
+userArray.push(fullUser)
+localStorage.setItem("user", JSON.stringify(userArray))
+})
